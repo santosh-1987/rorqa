@@ -2,8 +2,8 @@
 
 one:
   question: MyString
-  dashboard: one
+  subject: one
 
 two:
   question: MyString
-  dashboard: two
+  subject: two
