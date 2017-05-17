@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :questions do
+    resources :answers
+  end
   resources :dashboards
   root :to => "dashboards#index"
 
