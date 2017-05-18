@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  question: MyString
-  subject: one
+  name: MyString
 
 two:
-  question: MyString
-  subject: two
+  name: MyString
