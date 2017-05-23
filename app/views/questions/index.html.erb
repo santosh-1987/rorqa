@@ -1,9 +1,13 @@
 <%- model_class = Question -%>
-<div class="page-header">
-  <h4><%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h4>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
-              new_question_path,
-              :class => 'btn btn-primary btn-sm pull-right' %>
+<div class="custom-header">
+  <div class="row">
+    <div class="col-lg-6"><h4><%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h4></div>
+    <div class="col-lg-6">
+      <%= link_to t('.new', :default => t("helpers.links.new_question")),
+                  new_question_path,
+                  :class => 'btn btn-primary btn-sm pull-right' %>
+    </div>
+  </div>
 </div>
 <div class="row">
   <% @questions.each do |question| %>
@@ -11,10 +15,10 @@
         <div class="thumbnail">
           <span class="pull-right badge"><%= question.subject.name %></span>
           <div class="caption">
-            <h3><%= question.question %></h3>
+            <h3 class="question_text"><%= question.question %></h3>
             <p>2 Comments</p>
             <p>
-              <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#myModal">Comment</button>
+              <button type="button" data-id="<%= question.id%>" class="btn btn-xs btn-info comment_link" data-toggle="modal" data-target="#myModal">Comment</button>
               <%#= link_to t('Comment', :default => t("helpers.links.comment")),
                           question_answers_path(question.id), :class => 'btn btn-default btn-xs btn-info' %>
               <%= link_to t('Answer', :default => t("helpers.links.answer")),
@@ -36,23 +40,27 @@
       </div>
   <% end %>
 </div>
-<!--TODO ADD FORMTAG-->
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      <%= form_tag comments_path, :method => :post, :class => 'form-group', remote: true do %>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" id="comment_form">Question ???</h4>
+          </div>
+          <div class="modal-body">
+            <label for="comment">Comment:</label>
+            <%= text_area_tag 'comment[comment]', nil, rows: 5, cols: 10, class: 'form-control comment_text' %>
+            <%= hidden_field_tag 'comment[commentable_id]'%>
+            <%= hidden_field_tag 'comment[commentable_type]',"Question"%>
+          </div>
+          <div class="modal-footer">
+            <%= submit_tag 'Save',class: "btn btn-primary"  %>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+      <% end %>
     </div>
 
   </div>
