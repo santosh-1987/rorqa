@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-
+  include ApplicationHelper
   # GET /comments
   # GET /comments.json
   def index
@@ -27,18 +27,21 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     status = verify_commentable(comment.commentable_type)
     if status
-      record = status.send(find_by_id, comment.commentable_id)
-      if record
-        @comment = record.comments.new(:comment => comment.comment)
+      @record = status.send(:find_by_id, comment.commentable_id)
+      if @record
+        @comment = @record.comments.new(:comment => comment.comment)
       end
     end
     respond_to do |format|
       if @comment && @comment.save
+        @comment_count = @record.comments.count
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
+        format.js {render layout: false, content_type: 'text/javascript'}
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js {render layout: false, content_type: 'text/javascript'}
       end
     end
   end

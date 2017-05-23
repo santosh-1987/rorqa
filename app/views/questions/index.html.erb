@@ -16,7 +16,7 @@
           <span class="pull-right badge"><%= question.subject.name %></span>
           <div class="caption">
             <h3 class="question_text"><%= question.question %></h3>
-            <p>2 Comments</p>
+            <p class="question_<%= question.id%>"><%= question.comments.count%> Comments</p>
             <p>
               <button type="button" data-id="<%= question.id%>" class="btn btn-xs btn-info comment_link" data-toggle="modal" data-target="#myModal">Comment</button>
               <%#= link_to t('Comment', :default => t("helpers.links.comment")),
