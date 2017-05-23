@@ -1,2 +1,6 @@
+<% if @comment_count %>
 $(".question_<%= @record.id %>").html("<%= @comment_count%> Comment(s)");
 $("#myModal").modal("toggle");
+<% else %>
+alert("<%= j @comment.errors.full_messages.join(",")%>");
+<% end %>

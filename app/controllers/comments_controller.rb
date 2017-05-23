@@ -37,11 +37,11 @@ class CommentsController < ApplicationController
         @comment_count = @record.comments.count
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
-        format.js {render layout: false, content_type: 'text/javascript'}
+        format.js {}
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
-        format.js {render layout: false, content_type: 'text/javascript'}
+        format.js {}
       end
     end
   end
