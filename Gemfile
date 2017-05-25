@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
+gem 'bootstrap-sass', '3.0.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,6 +46,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13.0'
   gem 'selenium-webdriver'
+  gem 'pry'
 end
 
 group :development do
