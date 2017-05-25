@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :comments
+  resources :comments, :except => [:index] do
+    get "/:commentable_type/:commentable_id", to: 'comments#index', on: :collection, :as => :fetch
+  end
   resources :subjects
   resources :questions do
     resources :answers

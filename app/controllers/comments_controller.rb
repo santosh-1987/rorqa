@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = params[:commentable_type].constantize.try(:find_by_id,params[:commentable_id]).try(:comments)
   end
 
   # GET /comments/1
