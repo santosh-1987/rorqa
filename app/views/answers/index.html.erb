@@ -7,10 +7,10 @@
 <% @answers.each do |answer| %>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= answer.question.question %></h3>
+        <h3 class="panel-title"><%=  answer.question.question %></h3>
       </div>
       <div class="panel-body">
-        <%= answer.answer %>
+        <%= answer.answer.html_safe %>
         <div class="btn-group-vertical pull-right">
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       question_answer_path(@question, answer), :class => 'btn btn-default btn-xs' %>
