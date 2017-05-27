@@ -18,14 +18,15 @@
     <div class="form-group">
       <%= f.label :question_id, :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
-        <%= f.collection_select :question_id, Question.all, :id, :question, include_blank: false, :class => 'form-control' %>
+        <%= f.hidden_field :question_id, :class => 'form-control' %>
+        <%= @question.question %>
       </div>
       <%= f.error_span(:question_id) %>
     </div>
     <div class="form-group">
       <%= f.label :answer, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_field :answer, :class => 'form-control' %>
+      <div class="col-lg-8">
+        <%= f.text_area :answer, :class => 'form-control answer_text', :rows => 10, :cols => 10 %>
       </div>
       <%= f.error_span(:answer) %>
     </div>

@@ -1,0 +1,8 @@
+<div class="row">
+  <%= "No Comments" if @comments.count <= 0 %>
+  <ul class="list-group">
+    <% @comments.each do |comment| %>
+        <li class="list-group-item"><%= comment.comment %></li>
+    <% end %>
+  </ul>
+</div>

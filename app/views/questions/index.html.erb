@@ -16,9 +16,11 @@
           <span class="pull-right badge"><%= question.subject.name %></span>
           <div class="caption">
             <h3 class="question_text"><%= question.question %></h3>
-            <p class="question_<%= question.id%>"><%= question.comments.count%> Comments</p>
+            <p class="question_<%= question.id %>">
+              <%= link_to "#{question.comments.count} Comment(s)", comments_question_path(question.id), remote: true %>
+            </p>
             <p>
-              <button type="button" data-id="<%= question.id%>" class="btn btn-xs btn-info comment_link" data-toggle="modal" data-target="#myModal">Comment</button>
+              <button type="button" data-id="<%= question.id %>" class="btn btn-xs btn-info comment_link" data-toggle="modal" data-target="#myModal">Comment</button>
               <%#= link_to t('Comment', :default => t("helpers.links.comment")),
                           question_answers_path(question.id), :class => 'btn btn-default btn-xs btn-info' %>
               <%= link_to t('Answer', :default => t("helpers.links.answer")),
@@ -53,15 +55,32 @@
           <div class="modal-body">
             <label for="comment">Comment:</label>
             <%= text_area_tag 'comment[comment]', nil, rows: 5, cols: 10, class: 'form-control comment_text' %>
-            <%= hidden_field_tag 'comment[commentable_id]'%>
-            <%= hidden_field_tag 'comment[commentable_type]',"Question"%>
+            <%= hidden_field_tag 'comment[commentable_id]' %>
+            <%= hidden_field_tag 'comment[commentable_type]', "Question" %>
           </div>
           <div class="modal-footer">
-            <%= submit_tag 'Save',class: "btn btn-primary"  %>
+            <%= submit_tag 'Save', class: "btn btn-primary" %>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
       <% end %>
     </div>
 
+  </div>
+</div>
+<!-- Comments Modal -->
+
+<div class="modal fade" id="commentModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="comment_form">Comments</h4>
+      </div>
+      <div class="modal-body" id="comments-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>

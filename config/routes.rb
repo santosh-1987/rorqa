@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   resources :comments
   resources :subjects
   resources :questions do
-    resources :answers
+    resources :answers do
+      get "/comments", to: 'questions#fetch_comments', on: :member
+    end
+    get "/comments", to: 'questions#fetch_comments', on: :member
   end
   resources :tags
   root :to => "subjects#index"

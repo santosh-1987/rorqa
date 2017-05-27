@@ -14,9 +14,12 @@
 //= require rails-ujs
 //= require turbolinks
 //= require bootstrap
+//= require bootstrap-wysihtml5
+
 //= require_tree .
 jQuery(document).ready(function ($) {
     $(document).on('turbolinks:load', function() {
+        $(".answer_text").wysihtml5();
         $(".inactive-answer").click(function (e) {
             alert("You can only view Answers through a particular Question");
         });
