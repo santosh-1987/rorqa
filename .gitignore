@@ -16,5 +16,4 @@ db/schema.rb
 /node_modules
 /yarn-error.log
 /Gemfile.lock
-Gemfile.lock
 .byebug_history
