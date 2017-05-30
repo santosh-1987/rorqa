@@ -59,10 +59,17 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+#Caching
+
+gem "actionpack-page_caching"
+gem 'actionpack-action_caching'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Heroku Deployment
-gem "rails_12factor"
-gem 'pg', group: :production
-ruby "2.3.1"
+group :production do
+  # Heroku Deployment
+  gem "rails_12factor"
+  gem 'pg', group: :production
+  ruby "2.3.1"
+end
