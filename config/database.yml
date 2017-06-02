@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: rorqa_production
-  username: rorqa
-  password: <%= ENV['RORQA_DATABASE_PASSWORD'] %>
+  database: rorqa_development
+  username: root
+  password: root
