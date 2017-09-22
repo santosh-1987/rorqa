@@ -5,4 +5,7 @@ class Question < ApplicationRecord
   has_many :tagged_services
   has_many :tags, through: :tagged_services
   validates :question, :presence => true
+
+  scope :active, -> { where(active: 'true') }
+  scope :inactive, -> { where(inactive: 'true') }
 end
