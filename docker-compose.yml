@@ -1,0 +1,27 @@
+version: '2'
+services:
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+  web:
+    build: .
+    command: bin/rails server --port 3000 --binding 0.0.0.0
+    environment:
+          - RAILS_ENV=development
+          - DATABASE_HOST=db
+          - DATABASE=mysql
+          - DATABASE_USERNAME=root
+          - DATABASE_PASSWORD=
+          - SECRET_KEY_BASE=3ad576ebf101d796769739f909b4a84d01a9f99852765d51008ec7d
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    volumes:
+      - .:/ror_qa
+#CD to Directory
+#docker build
+#docker-compose build
+#docker-compose up
+#docker-compose run web rake db:create db:setup

@@ -9,6 +9,8 @@
 </head>
 
 <body>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 <ul class="nav nav-tabs">
   <li role="questions" class="<%= controller_name == "questions" ? "active" : "inactive" %>"><%= link_to "Questions", questions_path %></li>
   <li role="subjects" class="<%= controller_name == "subjects" ? "active" : "inactive" %>"><%= link_to "Subjects", subjects_path %></li>
